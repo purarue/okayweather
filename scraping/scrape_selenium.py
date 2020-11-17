@@ -6,28 +6,26 @@ from selenium.webdriver.support import expected_conditions as EC
 
 url = "https://okayweather.pythonanywhere.com/dynamic"
 
-# launch chromedriver
+# launch chromedriver - the browser
 driver = webdriver.Chrome(shutil.which("chromedriver"))
 
 # change the current URL to the dynamic page
 driver.get(url)
 
-# wait up to 10 seconds after the page loads,
+# wait up to 30 seconds after the page loads,
 # to make sure the button is clickable
-button_css_selector = "button#getWeather"
-WebDriverWait(driver, timeout=10).until(
-    EC.element_to_be_clickable((By.CSS_SELECTOR, button_css_selector))
+WebDriverWait(driver, timeout=30).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "button#getWeather"))
 )
 
 # click the button
-driver.find_element_by_css_selector(button_css_selector).click()
+driver.find_element_by_css_selector("button#getWeather").click()
 
-# wait up till 10 seconds after we've clicked the button,
+# wait up to 30 seconds after we've clicked the button,
 # until the 'temperature' element has the text "Temperature" in it
-temperature_css_selector = "p.temperature"
-WebDriverWait(driver, timeout=10).until(
+WebDriverWait(driver, timeout=30).until(
     EC.text_to_be_present_in_element(
-        (By.CSS_SELECTOR, temperature_css_selector), "Temperature"
+        (By.CSS_SELECTOR, "p.temperature"), "Temperature"
     )
 )
 
@@ -35,9 +33,9 @@ WebDriverWait(driver, timeout=10).until(
 name_and_location = driver.find_element_by_css_selector("p.name")
 temperature = driver.find_element_by_css_selector("p.temperature")
 
-# print the text
+# print the text of those elements
 print(name_and_location.text.strip())
 print(temperature.text.strip())
 
-# quit chromedriver
+# quit the browser
 driver.quit()
