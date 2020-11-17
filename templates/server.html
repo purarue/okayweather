@@ -4,10 +4,8 @@
     {{weather_data['name']}}: {{ weather_data['coord']['lat'] }},{{
     weather_data['coord']['lon'] }}
   </p>
-  <div>
-    <p class="temperature">
-      Temperature: {{ (weather_data['main']['temp'] - 273.15) | int }} C°
-    </p>
-  </div>
+  <p class="temperature">
+    Temperature: {{ (weather_data['main']['temp'] - 273.15) | int }} C°
+  </p>
 </div>
 {% endblock %}

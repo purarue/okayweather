@@ -3,12 +3,10 @@
   <button id="getWeather">Click to get the weather!</button>
   <p id="loading"></p>
   <p class="name"></p>
-  <div>
-    <p class="temperature"></p>
-  </div>
+  <p class="temperature"></p>
 </div>
 <script>
-  const loadingDiv = document.querySelector("#loading");
+  const loadingP = document.querySelector("#loading");
   const nameP = document.querySelector(".name");
   const temperatureP = document.querySelector(".temperature");
 
@@ -17,12 +15,12 @@
   const targetButton = document.getElementById("getWeather");
   targetButton.addEventListener("click", function () {
     getWeather.disabled = true;
-    loadingDiv.innerHTML = "Loading Weather...";
+    loadingP.innerHTML = "Loading Weather...";
     fetch(api_url)
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
-        loadingDiv.innerHTML = "";
+        loadingP.innerHTML = "";
         nameP.innerHTML = `${data.name} - ${data.coord.lat}, ${data.coord.lon}`;
         const kelvin = data.main.temp;
         const celcius = kelvin - 273.15;
@@ -31,7 +29,7 @@
       })
       .catch((err) => {
         console.log(err);
-        loadingDiv.innerHTML = "Error retrieving data from API...";
+        loadingP.innerHTML = "Error retrieving data from API...";
       });
   });
 </script>
