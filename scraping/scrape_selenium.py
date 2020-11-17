@@ -23,7 +23,7 @@ WebDriverWait(driver, timeout=10).until(
 driver.find_element_by_css_selector(button_css_selector).click()
 
 # wait up till 10 seconds after we've clicked the button,
-# until the 'temperature' element has text in it
+# until the 'temperature' element has the text "Temperature" in it
 temperature_css_selector = "p.temperature"
 WebDriverWait(driver, timeout=10).until(
     EC.text_to_be_present_in_element(
