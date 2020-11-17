@@ -1,0 +1,6 @@
+{% extends "layout.html" %} {% block content %}
+<ul id="choices">
+  <li><a href="{{ url_for('server_rendered') }}">Server Side</a></li>
+  <li><a href="{{ url_for('dynamic') }}">Dynamic</a></li>
+</ul>
+{% endblock %}

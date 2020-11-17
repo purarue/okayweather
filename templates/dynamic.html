@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block content %}
+<div class="contents" id="dynamic">
+  <button id="getWeather">
+    Click to get the weather!
+  </button>
+  <p id="loading"></p>
+  <p class="name"></p>
+  <div>
+    <p class="temperature"></p>
+  </div>
+</div>
+<script>
+  const loadingDiv = document.querySelector("#loading");
+  const nameP = document.querySelector(".name");
+  const temperatureP = document.querySelector(".temperature");
+
+  const api_url = "{{ url_for('api') }}";
+
+  const targetButton = document.getElementById("getWeather");
+  targetButton.addEventListener("click", function () {
+    getWeather.disabled = true;
+    loadingDiv.innerHTML = "Loading Weather...";
+    fetch(api_url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        loadingDiv.innerHTML = "";
+        nameP.innerHTML = `${data.name} - ${data.coord.lat}, ${data.coord.lon}`;
+        const kelvin = data.main.temp;
+        const celcius = kelvin - 273.15;
+        const roundedCelcius = Math.floor(celcius);
+        temperatureP.innerHTML = `Temperature: ${roundedCelcius} C°`;
+      })
+      .catch((err) => {
+        console.log(err);
+        loadingDiv.innerHTML = "Error retrieving data from API...";
+      });
+  });
+</script>
+{% endblock %}

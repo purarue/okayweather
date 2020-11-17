@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block content %}
+<div class="contents" id="server">
+  <p class="name">
+    {{weather_data['name']}}: {{ weather_data['coord']['lon'] }},{{
+    weather_data['coord']['lat'] }}
+  </p>
+  <div>
+    <p class="temperature">
+      Temperature: {{ (weather_data['main']['temp'] - 273.15) | int }} C°
+    </p>
+  </div>
+</div>
+{% endblock %}
