@@ -24,9 +24,7 @@ driver.find_element_by_css_selector("button#getWeather").click()
 # wait up to 30 seconds after we've clicked the button,
 # until the 'temperature' element has the text "Temperature" in it
 WebDriverWait(driver, timeout=30).until(
-    EC.text_to_be_present_in_element(
-        (By.CSS_SELECTOR, "p.temperature"), "Temperature"
-    )
+    EC.text_to_be_present_in_element((By.CSS_SELECTOR, "p.temperature"), "Temperature")
 )
 
 # find the elements we want
